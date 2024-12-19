@@ -18,6 +18,7 @@
 
         shellHook = ''
           export INFOPATH=${guile-cairo}/share/info:$INFOPATH
+          export GUILE_LOAD_PATH="$PWD:$GUILE_LOAD_PATH"
         '';
       };
   });
