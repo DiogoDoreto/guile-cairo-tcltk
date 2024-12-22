@@ -1,7 +1,8 @@
-(define-module (cairo-table)
+(define-module (lib cairo)
   #:use-module (oop goops)
   #:use-module (cairo)
-  #:export (<cairo-area>
+  #:export (mm-to-points
+            <cairo-area>
             <cairo-table>
             get-cairo set-cairo!
             x x!
@@ -16,7 +17,12 @@
             area-to-rectangle
             move-to-area-center
             show-text-centered
-            show-text-right))
+            show-text-right
+            A4
+            A5))
+
+(define (mm-to-points mm)
+  (* 72 (/ mm 25.4)))
 
 (define-class <cairo-area> ()
   (cairo #:getter get-cairo #:setter set-cairo! #:init-keyword #:cairo)
@@ -86,3 +92,6 @@
                        (- (/ (width area) 2) ax)
                        (- (/ by 2)))
     (cairo-show-text (get-cairo area) text)))
+
+(define A4 (make <cairo-area> #:width (mm-to-points 210) #:height (mm-to-points 297)))
+(define A5 (make <cairo-area> #:width (/ (height A4) 2) #:height (width A4)))
