@@ -18,6 +18,22 @@
         "type": "github"
       }
     },
+    "guile-pstk": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1647632028,
+        "narHash": "sha256-MCVa6jzjb+UemTUlYYQJDp96CKJH75zNDQCPwV1v5Cs=",
+        "owner": "KikyTokamuro",
+        "repo": "guile-pstk",
+        "rev": "70396a6c49be6829b8fb6c3815bcb06dd17b2874",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KikyTokamuro",
+        "repo": "guile-pstk",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1733064805,
@@ -37,6 +53,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "guile-pstk": "guile-pstk",
         "nixpkgs": "nixpkgs"
       }
     },
