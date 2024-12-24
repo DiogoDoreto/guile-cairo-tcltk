@@ -5,24 +5,28 @@
   #:use-module (cairo)
   #:use-module (lib cairo)
   #:use-module (lib date)
+  #:use-module (store colors)
   #:export (agendamento3x3))
 
 (define margin (mm-to-points 10))
 
 (define (set-source-header-bg cr)
-  (cairo-set-source-rgb cr 0.98 0.50 0.45))
+  (apply cairo-set-source-rgb cr (get-color-rgb 'header-bg)))
 
 (define (set-source-header-text cr)
-  (cairo-set-source-rgb cr 0.55 0 0))
+  (apply cairo-set-source-rgb cr (get-color-rgb 'header-fg)))
 
 (define (set-source-altrow-bg cr)
-  (cairo-set-source-rgb cr 0.94 0.90 0.55))
+  (apply cairo-set-source-rgb cr (get-color-rgb 'alt-header-bg)))
+
+(define (set-source-altrow-text cr)
+  (apply cairo-set-source-rgb cr (get-color-rgb 'alt-header-fg)))
 
 (define (set-line-width-table cr)
   (cairo-set-line-width cr 0.5))
 
 (define (set-source-table-border cr)
-  (cairo-set-source-rgb cr 0.55 0 0))
+  (apply cairo-set-source-rgb cr (get-color-rgb 'border)))
 
 (define (date->page-side date)
   (if (any (λ (wd) (wd date)) (list monday? tuesday? wednesday?))
@@ -63,6 +67,7 @@
     (let ((cell (cell-inner-area table 0 col 1 colspan)))
       (show-text-centered cell text)
       (when day (show-text-right cell (number->string day))))
+    (set-source-altrow-text cr)
     (when times (render-time-rows table col))))
 
 (define (week-day-name date)
